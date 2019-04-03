@@ -37,7 +37,7 @@
  * @package system.db.ar
  * @since 1.0
  */
-abstract class CActiveRecord extends CModel
+abstract class CActiveRecord extends CModel implements JsonSerializable
 {
 	const BELONGS_TO='CBelongsToRelation';
 	const HAS_ONE='CHasOneRelation';
@@ -2122,6 +2122,11 @@ abstract class CActiveRecord extends CModel
 	{
 		return $this->__isset($offset);
 	}
+
+	public function jsonSerialize()
+    {
+        return $this->getAttributes();
+    }
 }
 
 
