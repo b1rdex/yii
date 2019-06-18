@@ -125,6 +125,7 @@ class CFilterChain extends CList
 	 */
 	public function run(): ?ResponseInterface
 	{
+	    $response = null;
 		if($this->offsetExists($this->filterIndex))
 		{
 			$filter=$this->itemAt($this->filterIndex++);
@@ -132,6 +133,8 @@ class CFilterChain extends CList
 			$filter->filter($this);
 		}
 		else
-			return $this->controller->runAction($this->action);
+			$response = $this->controller->runAction($this->action);
+
+		return $response;
 	}
 }
