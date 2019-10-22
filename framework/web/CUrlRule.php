@@ -95,7 +95,9 @@ class CUrlRule extends CBaseUrlRule
      */
     protected function escapeRegexpSpecialChars($matches)
     {
-        return preg_quote($matches[0], '/');
+        /* @noinspection PregQuoteUsageInspection */
+        //  we don't add `/` because it's escaped manually…
+        return preg_quote($matches[0]);
     }
 
     /**
