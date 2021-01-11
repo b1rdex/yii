@@ -105,7 +105,7 @@ class CMarkdownParser extends MarkdownExtra
 	 */
 	public function _doFencedCodeBlocks_callback($matches)
 	{
-		return "\n\n".$this->hashBlock($this->highlightCodeBlock($matches[2]))."\n\n";
+		return "\n\n".$this->hashBlock($this->highlightCodeBlock($matches[4]))."\n\n";
 	}
 
 	/**
