@@ -8,6 +8,8 @@
  * @license http://www.yiiframework.com/license/
  */
 
+use Michelf\MarkdownExtra;
+
 /**
  * CMarkdownParser is a wrapper of {@link http://michelf.com/projects/php-markdown/extra/ MarkdownExtra_Parser}.
  *
@@ -40,7 +42,7 @@
  * @package system.utils
  * @since 1.0
  */
-class CMarkdownParser extends MarkdownExtra_Parser
+class CMarkdownParser extends MarkdownExtra
 {
 	/**
 	 * @var string the css class for the div element containing
