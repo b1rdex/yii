@@ -8,6 +8,8 @@
  * @license http://www.yiiframework.com/license/
  */
 
+use Laminas\Escaper\Escaper;
+
 /**
  * CJavaScript is a helper class containing JavaScript-related handling functions.
  *
@@ -29,7 +31,6 @@ class CJavaScript
 	{
 		$js = (string)$js;
 
-		Yii::import('system.vendors.zend-escaper.Escaper');
 		$escaper=new Escaper(Yii::app()->charset);
 		if($forUrl)
 			return $escaper->escapeUrl($js);

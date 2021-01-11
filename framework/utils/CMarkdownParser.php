@@ -8,12 +8,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-require_once(Yii::getPathOfAlias('system.vendors.markdown.markdown').'.php');
-if(!class_exists('HTMLPurifier_Bootstrap',false))
-{
-	require_once(Yii::getPathOfAlias('system.vendors.htmlpurifier').DIRECTORY_SEPARATOR.'HTMLPurifier.standalone.php');
-	HTMLPurifier_Bootstrap::registerAutoload();
-}
+use Michelf\MarkdownExtra;
 
 /**
  * CMarkdownParser is a wrapper of {@link http://michelf.com/projects/php-markdown/extra/ MarkdownExtra_Parser}.
@@ -47,7 +42,7 @@ if(!class_exists('HTMLPurifier_Bootstrap',false))
  * @package system.utils
  * @since 1.0
  */
-class CMarkdownParser extends MarkdownExtra_Parser
+class CMarkdownParser extends MarkdownExtra
 {
 	/**
 	 * @var string the css class for the div element containing
@@ -110,7 +105,7 @@ class CMarkdownParser extends MarkdownExtra_Parser
 	 */
 	public function _doFencedCodeBlocks_callback($matches)
 	{
-		return "\n\n".$this->hashBlock($this->highlightCodeBlock($matches[2]))."\n\n";
+		return "\n\n".$this->hashBlock($this->highlightCodeBlock($matches[4]))."\n\n";
 	}
 
 	/**
