@@ -8,6 +8,9 @@
  * @license http://www.yiiframework.com/license/
  */
 
+require_once(Yii::getPathOfAlias('system.vendors.TextHighlighter.Text.Highlighter').'.php');
+require_once(Yii::getPathOfAlias('system.vendors.TextHighlighter.Text.Highlighter.Renderer.Html').'.php');
+
 /**
  * CTextHighlighter does syntax highlighting for its body content.
  *
@@ -87,8 +90,7 @@ class CTextHighlighter extends COutputProcessor
 		if($this->showLineNumbers)
 			$options['numbers']=($this->lineNumberStyle==='list')?HL_NUMBERS_LI:HL_NUMBERS_TABLE;
 
-		$hl = new Text_Highlighter();
-		$highlighter=empty($this->language)?false:$hl->factory($this->language);
+		$highlighter=empty($this->language)?false:Text_Highlighter::factory($this->language);
 		if($highlighter===false)
 			$o='<pre>'.CHtml::encode($content).'</pre>';
 		else

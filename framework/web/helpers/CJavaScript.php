@@ -29,7 +29,8 @@ class CJavaScript
 	{
 		$js = (string)$js;
 
-		$escaper=new \Laminas\Escaper\Escaper(Yii::app()->charset);
+		Yii::import('system.vendors.zend-escaper.Escaper');
+		$escaper=new Escaper(Yii::app()->charset);
 		if($forUrl)
 			return $escaper->escapeUrl($js);
 		else
