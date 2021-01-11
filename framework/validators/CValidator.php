@@ -44,28 +44,29 @@
 abstract class CValidator extends CComponent
 {
 	/**
-	 * @var array list of built-in validators (name=>class)
+	 * @var string[] $builtInValidators list of built-in validators (name=>class)
+     * @phpstan-var array<string, class-string<self>> $builtInValidators
 	 */
 	public static $builtInValidators=array(
-		'required'=>'CRequiredValidator',
-		'filter'=>'CFilterValidator',
-		'match'=>'CRegularExpressionValidator',
-		'email'=>'CEmailValidator',
-		'url'=>'CUrlValidator',
-		'unique'=>'CUniqueValidator',
-		'compare'=>'CCompareValidator',
-		'length'=>'CStringValidator',
-		'in'=>'CRangeValidator',
-		'numerical'=>'CNumberValidator',
-		'captcha'=>'CCaptchaValidator',
-		'type'=>'CTypeValidator',
-		'file'=>'CFileValidator',
-		'default'=>'CDefaultValueValidator',
-		'exist'=>'CExistValidator',
-		'boolean'=>'CBooleanValidator',
-		'safe'=>'CSafeValidator',
-		'unsafe'=>'CUnsafeValidator',
-		'date'=>'CDateValidator',
+		'required' => CRequiredValidator::class,
+		'filter' => CFilterValidator::class,
+		'match' => CRegularExpressionValidator::class,
+		'email' => CEmailValidator::class,
+		'url' => CUrlValidator::class,
+		'unique' => CUniqueValidator::class,
+		'compare' => CCompareValidator::class,
+		'length' => CStringValidator::class,
+		'in' => CRangeValidator::class,
+		'numerical' => CNumberValidator::class,
+		'captcha' => CCaptchaValidator::class,
+		'type' => CTypeValidator::class,
+		'file' => CFileValidator::class,
+		'default' => CDefaultValueValidator::class,
+		'exist' => CExistValidator::class,
+		'boolean' => CBooleanValidator::class,
+		'safe' => CSafeValidator::class,
+		'unsafe' => CUnsafeValidator::class,
+		'date' => CDateValidator::class,
 	);
 
 	/**
@@ -115,7 +116,6 @@ abstract class CValidator extends CComponent
 	 * @param string $attribute the name of the attribute to be validated.
 	 */
 	abstract protected function validateAttribute($object,$attribute);
-
 
 	/**
 	 * Creates a validator object.
@@ -270,7 +270,7 @@ abstract class CValidator extends CComponent
 	 */
 	protected function isEmpty($value,$trim=false)
 	{
-		return $value===null || $value===array() || $value==='' || $trim && is_scalar($value) && trim($value)==='';
+		return $value===null || $value===array() || $value==='' || ($trim && is_scalar($value) && trim($value) === '');
 	}
 }
 
