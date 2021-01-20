@@ -134,9 +134,9 @@ abstract class CConsoleCommand extends CComponent
 			$name=$param->getName();
 			if(isset($options[$name]))
 			{
-				if(version_compare(PHP_VERSION,'8.0','>=')) {
-                    // @phpstan-ignore-next-line Call to an undefined method ReflectionType::getName()
-					$isArray = null !== ($type = $param->getType()) && ltrim($type->getName(), '?') === 'array';
+                if (\PHP_VERSION_ID >= 80000) {
+                    $type = $param->getType();
+                    $isArray = $type instanceof ReflectionNamedType && ltrim($type->getName(), '?') === 'array';
 				} else {
 					$isArray = $param->isArray();
 				}
